@@ -1,8 +1,4 @@
-FROM ubuntu:focal
-RUN apt-get update && apt-get install -y curl && \
-    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
-    apt-get install -y nodejs
-
+FROM mcr.microsoft.com/playwright:v1.13.1-focal
 ARG VERSION
 
 # NB: Lots of layers and dupe installs; not optimized :P Don't judge!
@@ -14,7 +10,7 @@ RUN rm -rf /tmp/pw-chrome
 
 RUN useradd -m tester
 USER tester
-WORKDIR /opt/tester
+WORKDIR /home/tester
 COPY ./${VERSION}/package.json .
 COPY ./${VERSION}/package-lock.json .
 RUN npm ci

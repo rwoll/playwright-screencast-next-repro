@@ -10,7 +10,7 @@ do
   echo "======================================================================="
   echo "TESTING $VERSION"
   echo "======================================================================="
-  docker run --init -it --rm --pull=never rwoll/pw-repro:$VERSION
+  docker run --init -it --rm --pull=never --volume $PWD/screencast.spec.ts-snapshots:/opt/test/screencast.spec.ts-snapshots rwoll/pw-repro:$VERSION
 done
 
 echo "======================================================================="

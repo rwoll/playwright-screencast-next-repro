@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
 test('should produce screencast frame', async ({ context, page }) => {
   const cdp = await context.newCDPSession(page);
@@ -7,5 +7,6 @@ test('should produce screencast frame', async ({ context, page }) => {
   });
   await cdp.send("Page.startScreencast");
   await page.goto('https://playwright.dev/');
+  expect(await page.screenshot()).toMatchSnapshot("playwright.png");
   await screencastFrame;
 });
